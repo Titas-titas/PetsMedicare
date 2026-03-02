@@ -1,0 +1,21 @@
+info:
+  name: updateAppointmen
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: http://localhost:3000/api/v1/appointments/1
+  body:
+    type: json
+    data: |
+      {
+        "notes": "Annual check-up and vaccinations. Also check-up for vitals."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

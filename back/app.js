@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 
 //mounting the routers
 app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/appointments", appointmentsRouter);
 
 //centralizes error handling middleware, if first functions argument is error, express will know that this is error handling middleware
 app.use((err, req, res, next) => {

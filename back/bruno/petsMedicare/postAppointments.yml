@@ -1,0 +1,25 @@
+info:
+  name: postAppointments
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:3000/api/v1/appointments
+  body:
+    type: json
+    data: |
+      {
+        "pet_name": "Bella",
+        "owner_name": "Jonas Petraitis",
+        "appointment_date": "2026-03-10",
+        "appointment_time": "14:30",
+        "notes": "Annual check-up and vaccinations"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
