@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 
 const validate = (req, res, next) => {
   try {
