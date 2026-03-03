@@ -1,6 +1,6 @@
-// const express = require("express");
 import express from "express";
 import cors from "cors"
+import cookieParser from "cookie-parser";
 import usersRouter from "./routes/userRouter.js";
 import appointmentsRouter from "./routes/appointmentRouter.js";
 
@@ -9,6 +9,7 @@ const app = express();
 
 //parses (converts to js object) incoming json data to req.body
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(cors({
   origin: "http://localhost:5173",

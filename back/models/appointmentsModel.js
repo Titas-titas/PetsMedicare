@@ -20,6 +20,7 @@ export const appointmentById = async (id) => {
 // post
 export const postAppointments = async (newAppointment) => {
   const {
+    user_id,
     pet_name,
     owner_name,
     appointment_date,
@@ -28,6 +29,7 @@ export const postAppointments = async (newAppointment) => {
   } = newAppointment;
 
   const appointment = {
+    user_id,
     pet_name,
     owner_name,
     appointment_date,
@@ -38,6 +40,7 @@ export const postAppointments = async (newAppointment) => {
   const appointmentsList = await sql`
     insert into appointments ${sql(
       appointment,
+      "user_id",
       "pet_name",
       "owner_name",
       "appointment_date",
