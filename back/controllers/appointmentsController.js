@@ -19,12 +19,12 @@ export const getAllAppointments = async (req, res, next) => {
 };
 
 //get id
-export const getAppointmentsById = async(req, res, next) => {
+export const getAppointmentsById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const appointments = await appointmentById(id);
+        const appointment = await appointmentById(id);
 
-        if (!appointments) {
+        if (!appointment) {
             throw new AppError("Id is invalid", 404);
         }
 
@@ -37,12 +37,13 @@ export const getAppointmentsById = async(req, res, next) => {
 
         res.status(200).json({
             status: "success",
-            data: appointments,
+            data: appointment,
         });
     } catch (error) {
         next(error);
     }
 };
+
 
 //post
 export const newPostAppointment = async(req, res, next) => {
@@ -85,24 +86,24 @@ export const updateAppointment = async(req, res, next) => {
 };
 
 // delete
-export const deleteAppointment = async(req, res, next) => {
+export const deleteAppointment = async (req, res, next) => {
     try {
         const { id } = req.params;
-        
+        const appointment = await appointmentById(id);
         if (!appointment) {
             return res.status(404).json({
                 status: "fail",
                 message: "Id is invalid",
             });
         }
-
         if (
             req.user.role !== "admin" &&
             appointment.user_id !== req.user.id
         ) {
             return next(new AppError("You do not have permission", 403));
         }
-        const appointment = await deleteAppointmentById(id);
+        await deleteAppointmentById(id);
+
         res.status(200).json({
             status: "success",
             message: "The appointment has been deleted.",

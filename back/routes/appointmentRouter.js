@@ -9,6 +9,6 @@ import { allowAccessTo, protect } from "../controllers/authController.js";
 const appointmentsRouter = express.Router();
 
 appointmentsRouter.route("/").get(protect, allowAccessTo("admin"), getAllAppointments).post(protect, allowAccessTo("user"), validateNewAppointments, validate, newPostAppointment);
-appointmentsRouter.route("/:id").get(protect, allowAccessTo("user", "admin"),getAppointmentsById).patch(protect, allowAccessTo("user", "admin"), validateNewAppointments, validate, updateAppointment).delete(protect, allowAccessTo("user", "admin"), deleteAppointment);
+appointmentsRouter.route("/:id").get(protect, allowAccessTo("user", "admin"),getAppointmentsById).patch(protect, allowAccessTo("user", "admin"), updateAppointment).delete(protect, allowAccessTo("user", "admin"), deleteAppointment);
 
 export default appointmentsRouter;
