@@ -76,3 +76,12 @@ export const deleteAppointmentById = async (id) => {
 
     return appointmentsList[0];
 }
+
+//get all by users id
+export const appointmentsByUser = async (userId) => {
+  const appointmentsList = await sql`
+    select * from appointments
+    where user_id = ${userId}
+  `;
+  return appointmentsList;
+};

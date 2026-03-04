@@ -1,4 +1,4 @@
-import { allAppointments, appointmentById, deleteAppointmentById, postAppointments, updateTheAppointment } from "../models/appointmentsModel.js";
+import { allAppointments, appointmentById, appointmentsByUser, deleteAppointmentById, postAppointments, updateTheAppointment } from "../models/appointmentsModel.js";
 import AppError from "../utils/appError.js";
 
 //get all
@@ -32,7 +32,7 @@ export const getAppointmentsById = async (req, res, next) => {
             req.user.role !== "admin" &&
             appointment.user_id !== req.user.id
         ) {
-            return next(new AppError("You do not have permission", 403));
+            return next(new AppError("Your appointment is not found", 404));
         }
 
         res.status(200).json({
@@ -111,5 +111,23 @@ export const deleteAppointment = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+//get all by user id
+export const getMyAppointments = async (req, res, next) => {
+  try {
+    const appointments = await appointmentsByUser(req.user.id);
+
+    if(appointments.length === 0){
+        throw new AppError("No appointments were found", 404);
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: appointments,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
