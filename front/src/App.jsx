@@ -1,9 +1,12 @@
+import Login from "./Login.jsx";
+import Signup from "./Signup.jsx";
 
 function App() {
     
     return(
         <>
-            <h1>Hello world</h1>
+            <Login/>
+            <Signup/>
         </>
     )
 }
