@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { handleErrors } from "../utils/errorhandling";
 import axios from "axios";
 
@@ -84,6 +84,11 @@ function Signup() {
                 </div>
 
                 <button type="submit">Create account</button>
+                <div>
+                    <p>
+                        I already have my account. <Link to="/login" className="text-purple-500 hover:text-purple-900">Log in</Link>
+                    </p>
+                </div>
             </form>
         </>
     )

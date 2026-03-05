@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
-input{
+input, button{
     @apply border rounded p-1;
 }

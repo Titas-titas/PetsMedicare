@@ -1,12 +1,15 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { UserContext } from "../contexts/UserContext";
+import { handleErrors } from "../utils/errorhandling";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Login() {
     const [error, setError] = useState("");
+    const {setUser} = useContext(UserContext);
     const {register, handleSubmit, formState:{errors}} = useForm();
     const navigate = useNavigate();
 
@@ -14,9 +17,10 @@ function Login() {
         try {
             const response = await axios.post(`${API_URL}/users/login`, formdata, {withCredentials:true});
 
+            setUser(response.data.data);
             navigate("/appoitments");
         } catch (error) {
-            setError(error.message);
+            setError(handleErrors(error));
         }
     }
     return(
@@ -54,6 +58,11 @@ function Login() {
                 </div>
 
                 <button type="submit">Login</button>
+                <div>
+                    <p>
+                        I dont have account <Link to="/signup" className="text-purple-500 hover:text-purple-900">Sign up</Link>
+                    </p>
+                </div>
             </form>
         </>
     )
