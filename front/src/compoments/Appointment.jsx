@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 function Appointment({appointment}) {
     return(
         <div className="appointment-card">
@@ -8,7 +10,10 @@ function Appointment({appointment}) {
                 <p>status: {appointment.status}</p>
             </div>
             <div>
-                <p>{appointment.appointment_date} {appointment.appointment_time}</p>
+                <p>{appointment.appointment_date.slice(0, 10)} {appointment.appointment_time.slice(0, 5)}</p>
+            </div>
+            <div>
+                <Link className="text-white bg-purple-500 " to={`/appointments/edit/${appointment.id}`}>Edit</Link>
             </div>
         </div>
     )
