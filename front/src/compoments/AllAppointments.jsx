@@ -3,11 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import { handleErrors } from "../utils/errorhandling.js";
 import { UserContext } from "../contexts/UserContext.jsx";
 import Appointment from "./Appointment.jsx";
+import { Link } from "react-router";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-function AllAppoitments() {
+function AllAppointments() {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState("");
     const { user } = useContext(UserContext);
@@ -24,7 +25,7 @@ function AllAppoitments() {
     }
 
     useEffect(() => {
-        const getData = async() =>{
+        const getData = async () =>{
             await getAppointments();
         };
         getData();
@@ -33,6 +34,7 @@ function AllAppoitments() {
 
     return(
         <div>
+            <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>
             <div>{error}</div>
             {appointments.map((appointment) => (
                 <Appointment 
@@ -45,4 +47,4 @@ function AllAppoitments() {
     )
 }
 
-export default AllAppoitments;
+export default AllAppointments;
