@@ -1,6 +1,6 @@
-import AddAppoitments from "./compoments/AddAppoitment.jsx";
-import AllAppoitments from "./compoments/AllAppoitments.jsx";
-import EditAppoitments from "./compoments/EditAppoitment.jsx";
+import AddAppointment from "./compoments/AddAppointments.jsx";
+import AllAppointments from "./compoments/AllAppointments.jsx";
+import EditAppointment from "./compoments/EditAppoitment.jsx";
 import Home from "./compoments/Home.jsx";
 import Login from "./compoments/Login.jsx";
 import LogoutBtn from "./compoments/LogoutBtn.jsx";
@@ -28,9 +28,9 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/appoitments/edit" element={<EditAppoitments/>}/>
-                    <Route path="/appoitments/add" element={<AddAppoitments/>}/>
-                    <Route path="/appoitments" element={<ProtectedRoute><AllAppoitments/></ProtectedRoute>}/>
+                    <Route path="/appointments/edit" element={<EditAppointment/>}/>
+                    <Route path="/appointments/add" element={<AddAppointment/>}/>
+                    <Route path="/appointments" element={<ProtectedRoute><AllAppointments/></ProtectedRoute>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<Signup/>}/>
                 </Routes>

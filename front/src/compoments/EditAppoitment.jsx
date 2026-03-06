@@ -1,9 +1,9 @@
 
-function EditAppoitments() {
+function EditAppointment() {
     
     return(
-        <h1>all apoitments page</h1>
+        <h1>all appointment page</h1>
     )
 }
 
-export default EditAppoitments;
+export default EditAppointment;
