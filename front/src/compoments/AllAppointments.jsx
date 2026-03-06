@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { handleErrors } from "../utils/errorhandling.js";
+import { UserContext } from "../contexts/UserContext.jsx";
 import Appointment from "./Appointment.jsx";
 
 
@@ -9,10 +10,12 @@ const API_URL = import.meta.env.VITE_API_URL;
 function AllAppoitments() {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState("");
+    const { user } = useContext(UserContext);
 
     const getAppointments = async () => {
         try {
-            const response = await axios.get(`${API_URL}/appointments`, {withCredentials: true});
+            const endpoint = user.role === "admin" ? `appointments` : `appointments/me`
+            const response = await axios.get(`${API_URL}/${endpoint}`, {withCredentials: true});
             const {data} = response.data;
             await setAppointments(data)
         } catch (error) {
