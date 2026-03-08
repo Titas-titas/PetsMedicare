@@ -24,6 +24,16 @@ function AllAppointments() {
         }
     }
 
+    const deleteAppointments = async (id) => {
+        try {
+        await axios.delete(`${API_URL}/appointments/${id}`, {withCredentials: true});
+
+        setAppointments((currentAppointments) => currentAppointments.filter((appointment) => appointment.id !== id));
+        } catch (error) {
+        setError(handleErrors(error));
+        }
+    };
+
     useEffect(() => {
         const getData = async () =>{
             await getAppointments();
@@ -40,7 +50,7 @@ function AllAppointments() {
                 <Appointment 
                 key={appointment.id}
                 appointment={appointment}
-
+                onDelete={deleteAppointments}
                 />
             ))}
         </div>

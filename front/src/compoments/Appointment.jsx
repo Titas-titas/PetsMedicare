@@ -1,6 +1,8 @@
 import { Link } from "react-router";
+import deleteIcon from "../assets/close.svg"
+import editIcon from "../assets/ink_pen.svg"
 
-function Appointment({appointment}) {
+function Appointment({appointment, onDelete}) {
     return(
         <div className="appointment-card">
             <div>
@@ -12,8 +14,9 @@ function Appointment({appointment}) {
             <div>
                 <p>{appointment.appointment_date.slice(0, 10)} {appointment.appointment_time.slice(0, 5)}</p>
             </div>
-            <div>
-                <Link className="text-white bg-purple-500 " to={`/appointments/edit/${appointment.id}`}>Edit</Link>
+            <div className="flex gap-2">
+                <Link className="text-white bg-purple-500 rounded p-1" to={`/appointments/edit/${appointment.id}`}><img src={editIcon} alt="delete" /></Link>
+                <button onClick={() => onDelete(appointment.id)}><img src={deleteIcon} alt="delete" /></button>
             </div>
         </div>
     )
