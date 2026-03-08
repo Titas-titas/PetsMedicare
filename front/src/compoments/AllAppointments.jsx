@@ -34,6 +34,33 @@ function AllAppointments() {
         }
     };
 
+    const approveAppointment = async (id) => {
+        try {
+            await axios.patch(
+            `${API_URL}/appointments/${id}`,
+            { status: "approved" },
+            { withCredentials: true }
+            );
+            await getAppointments();
+        } catch (error) {
+            setError(handleErrors(error));
+        }
+    };
+
+    const cancelAppointment = async (id) => {
+        try {
+            await axios.patch(
+            `${API_URL}/appointments/${id}`,
+            { status: "canceled" },
+            { withCredentials: true }
+            );
+            await getAppointments();
+        } catch (error) {
+            setError(handleErrors(error));
+        }
+    };
+
+
     useEffect(() => {
         const getData = async () =>{
             await getAppointments();
@@ -51,6 +78,9 @@ function AllAppointments() {
                 key={appointment.id}
                 appointment={appointment}
                 onDelete={deleteAppointments}
+                onApprove={approveAppointment}
+                onCancel={cancelAppointment}
+                user={user}
                 />
             ))}
         </div>
