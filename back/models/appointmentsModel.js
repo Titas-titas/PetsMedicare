@@ -1,9 +1,40 @@
 import { sql } from "../dbConnection.js";
 
+const allowedSortFields = {
+  pet_name: sql`pet_name`,
+  appointment_date: sql`appointment_date`,
+  owner_name: sql`owner_name`
+};
+
+const allowedOrder = {
+  ASC: sql`ASC`,
+  DESC: sql`DESC`
+};
+
+
 // get all
-export const allAppointments = async () => {
+export const allAppointments = async ({ sort, order, search }) => {
+  let whereAppointments = sql``;
+  let orderAppointments = sql``;
+
+  if(search) {
+    whereAppointments = sql`
+      where pet_name like ${'%' + search + '%'}
+      or owner_name like ${'%' + search + '%'}
+      or notes like ${'%' + search + '%'}
+    `;
+  }
+
+  if (sort && order){
+    orderAppointments = sql`
+      order by ${allowedSortFields[sort]} ${allowedOrder[order]}
+    `;
+  }
+
   const appointmentsList = await sql`
     select * from appointments
+    ${whereAppointments}
+    ${orderAppointments}
   `;
   return appointmentsList;
 };
@@ -78,10 +109,33 @@ export const deleteAppointmentById = async (id) => {
 }
 
 //get all by users id
-export const appointmentsByUser = async (userId) => {
+export const appointmentsByUser = async (userId, { sort, order, search }) => {
+  let whereAppointments = sql``;
+  let orderAppointments = sql``;
+
+  if (search) {
+    whereAppointments = sql`
+      and (
+        pet_name ilike ${'%' + search + '%'}
+        or owner_name ilike ${'%' + search + '%'}
+        or notes ilike ${'%' + search + '%'}
+      )
+    `;
+  }
+
+  if (sort && order) {
+    orderAppointments = sql`
+      order by ${allowedSortFields[sort]} ${allowedOrder[order]}
+    `;
+  }
+
   const appointmentsList = await sql`
     select * from appointments
     where user_id = ${userId}
+    ${whereAppointments}
+    ${orderAppointments}
   `;
+
   return appointmentsList;
 };
+

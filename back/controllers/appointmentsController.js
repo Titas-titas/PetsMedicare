@@ -4,10 +4,14 @@ import AppError from "../utils/appError.js";
 //get all
 export const getAllAppointments = async (req, res, next) => {
     try {
-        const appointmentsList = await allAppointments();
+        const { sort, order, search } = req.query;
+
+        const appointmentsList = await allAppointments({ sort, order, search });
+        
         if(appointmentsList.length === 0){
             throw new AppError("No appointments were found", 404);
         }
+
         res.status(200).json({
             status: "success",
             requestTime: req.requestTime,
@@ -116,7 +120,9 @@ export const deleteAppointment = async (req, res, next) => {
 //get all by user id
 export const getMyAppointments = async (req, res, next) => {
   try {
-    const appointments = await appointmentsByUser(req.user.id);
+    const { sort, order, search } = req.query;
+
+    const appointments = await appointmentsByUser(req.user.id, { sort, order, search });
 
     if(appointments.length === 0){
         throw new AppError("No appointments were found", 404);

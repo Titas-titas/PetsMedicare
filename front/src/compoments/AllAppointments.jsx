@@ -71,7 +71,7 @@ function AllAppointments() {
 
     return(
         <div>
-            <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>
+            {user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
             <div>{error}</div>
             {appointments.map((appointment) => (
                 <Appointment 
