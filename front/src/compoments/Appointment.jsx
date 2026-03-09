@@ -17,7 +17,7 @@ function Appointment({appointment, onDelete, onApprove, onCancel, user}) {
             {(appointment.status === "pending" || user.role === "admin") && (
             <div className="flex gap-2">
                 <Link className="text-white bg-purple-500 rounded p-1" to={`/appointments/edit/${appointment.id}`}><img src={editIcon} alt="delete" /></Link>
-                <button onClick={() => onDelete(appointment.id)}><img src={deleteIcon} alt="delete" /></button>
+                <button className="border-gray-400" onClick={() => onDelete(appointment.id)}><img src={deleteIcon} alt="delete" /></button>
             </div>
             )}
             {user.role === "admin" &&

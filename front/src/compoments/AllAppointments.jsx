@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { handleErrors } from "../utils/errorhandling.js";
 import { UserContext } from "../contexts/UserContext.jsx";
 import Appointment from "./Appointment.jsx";
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router";
 import SortDropdown from "./SortDropdown.jsx";
 import SearchInput from "./SearchInput.jsx";
 
@@ -83,7 +83,10 @@ function AllAppointments() {
 
     return(
         <div>
-            {user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
+            <div>{user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
+                <Outlet />
+            </div>
+           
             <div>
                 <SearchInput 
                 value={search} 
@@ -95,9 +98,11 @@ function AllAppointments() {
                 onChange={sortChange}
                 />
             </div>
+
             {appointments.length === 0 && !error && (
                 <div>No appointments found</div>
             )}
+
             {appointments.map((appointment) => (
                 <Appointment 
                 key={appointment.id}

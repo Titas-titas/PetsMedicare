@@ -25,10 +25,10 @@ function LogoutBtn() {
 
     return(
         <>
-            <div className="text-red-500">{error}</div>
             <button className="border-none" onClick={handleLogout}>
                 Logout
             </button>
+            <div className="text-red-500">{error}</div>
         </>
     )
 }

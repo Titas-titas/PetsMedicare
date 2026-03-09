@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { handleErrors } from "../utils/errorhandling";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -50,7 +50,6 @@ function AddAppointment() {
             <label className="flex flex-col">Pet Name</label>
             <input
             type="text"
-            className="border p-2"
             {...register("pet_name", { required: "Pet name is required" })}
             />
             {errors.pet_name && <p className="text-red-500">{errors.pet_name.message}</p>}
@@ -60,7 +59,6 @@ function AddAppointment() {
             <label className="flex flex-col">Owner Name</label>
             <input
             type="text"
-            className="border p-2"
             {...register("owner_name", { required: "Owner name is required" })}
             />
             {errors.owner_name && <p className="text-red-500">{errors.owner_name.message}</p>}
@@ -70,7 +68,6 @@ function AddAppointment() {
             <label className="flex flex-col">Appointment Date</label>
             <input
             type="date"
-            className="border p-2"
             {...register("appointment_date", { required: "Date is required" })}
             />
             {errors.appointment_date && <p className="text-red-500">{errors.appointment_date.message}</p>}
@@ -80,7 +77,6 @@ function AddAppointment() {
             <label className="flex flex-col">Appointment Time</label>
             <input
             type="time"
-            className="border p-2"
             {...register("appointment_time", { required: "Time is required" })}
             />
             {errors.appointment_time && <p className="text-red-500">{errors.appointment_time.message}</p>}
@@ -95,9 +91,10 @@ function AddAppointment() {
             />
         </div>
 
-        <button type="submit" className="bg-purple-500 text-white p-2 rounded">
+        <button type="submit" className="bg-purple-500 text-white p-2">
             Add Appointment
         </button>
+        <Link className="border text-center rounded p-2 border-gray-400" to="/appointments">Close</Link>
         <div className="text-red-500">{error}</div>
         </form>
     )

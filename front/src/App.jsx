@@ -18,19 +18,20 @@ function App() {
             <div className="text-white bg-purple-500 text-center p-3">
                 <h1 className="text-2xl">Pet Medicare</h1>
                 <div className="flex gap-3 justify-center">
-                    {user && <LogoutBtn/>}
+                    {user && <><LogoutBtn/> <Link to="/appointments" className="p-1">Appointments</Link></>}
                     {!user && <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Sign Up</Link>
+                        <Link to="/login" className="p-1">Login</Link>
+                        <Link to="/signup" className="p-1">Sign Up</Link>
                     </>}
                 </div>
             </div>
             <div>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/appointments/edit/:id" element={<ProtectedRoute><EditAppointment/></ProtectedRoute>}/>
-                    <Route path="/appointments/add" element={<ProtectedRoute><AddAppointment/></ProtectedRoute>}/>
-                    <Route path="/appointments" element={<ProtectedRoute><AllAppointments/></ProtectedRoute>}/>
+                    <Route index element={<Home/>}/>
+                    <Route path="/appointments" element={<ProtectedRoute><AllAppointments/></ProtectedRoute>}>
+                        <Route path="add" element={<ProtectedRoute><AddAppointment/></ProtectedRoute>}/>
+                        <Route path="edit/:id" element={<ProtectedRoute><EditAppointment/></ProtectedRoute>}/>
+                    </Route>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<Signup/>}/>
                 </Routes>
