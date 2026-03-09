@@ -11,10 +11,10 @@ function AddAppointment() {
     const navigate = useNavigate();
 
     const {
-            register,
-            handleSubmit,
-            formState: { errors },
-            reset
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset
     } = useForm({
         defaultValues:{
             pet_name:"",
@@ -27,77 +27,95 @@ function AddAppointment() {
 
     const onSubmit = async (formValue) =>{
         try {
-            await axios.post(`${API_URL}/appointments`, {
-                pet_name: formValue.pet_name,
-                owner_name: formValue.owner_name,
-                appointment_date: formValue.appointment_date,
-                appointment_time: formValue.appointment_time,
-                notes: formValue.notes
-            }, {withCredentials: true});
+            await axios.post(`${API_URL}/appointments`, formValue, { withCredentials: true });
 
-            alert("Appointments added");
+            alert("Appointment added");
             reset();
-            navigate("/appointments")
+            navigate("/appointments");
         } catch (error) {
             setError(handleErrors(error));
         }
     }
-    
+
     return(
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-w-md mx-auto p-4">
+        <form 
+            onSubmit={handleSubmit(onSubmit)} 
+            className="flex flex-col gap-3 mx-auto p-4 text-xl w-[90%]"
+        >
 
-        <div>
-            <label className="flex flex-col">Pet Name</label>
-            <input
-            type="text"
-            {...register("pet_name", { required: "Pet name is required" })}
-            />
-            {errors.pet_name && <p className="text-red-500">{errors.pet_name.message}</p>}
-        </div>
+            <div>
+                <label>Pet Name
+                    <input
+                        type="text"
+                        className="p-2 m-2 w-[50%]"
+                        {...register("pet_name", { required: "Pet name is required" })}
+                    />
+                </label>
+                {errors.pet_name && <p className="text-red-500">{errors.pet_name.message}</p>}
+            </div>
 
-        <div>
-            <label className="flex flex-col">Owner Name</label>
-            <input
-            type="text"
-            {...register("owner_name", { required: "Owner name is required" })}
-            />
-            {errors.owner_name && <p className="text-red-500">{errors.owner_name.message}</p>}
-        </div>
+            <div>
+                <label>Owner Name
+                    <input
+                        type="text"
+                        className="p-2 m-2 w-[50%]"
+                        {...register("owner_name", { required: "Owner name is required" })}
+                    />
+                </label>
+                {errors.owner_name && <p className="text-red-500">{errors.owner_name.message}</p>}
+            </div>
 
-        <div>
-            <label className="flex flex-col">Appointment Date</label>
-            <input
-            type="date"
-            {...register("appointment_date", { required: "Date is required" })}
-            />
-            {errors.appointment_date && <p className="text-red-500">{errors.appointment_date.message}</p>}
-        </div>
+            <div className="flex justify-around">
+                <div>
+                    <label>Date
+                        <input
+                            type="date"
+                            className="p-2 m-2"
+                            {...register("appointment_date", { required: "Date is required" })}
+                        />
+                    </label>
+                    {errors.appointment_date && <p className="text-red-500">{errors.appointment_date.message}</p>}
+                </div>
 
-        <div>
-            <label className="flex flex-col">Appointment Time</label>
-            <input
-            type="time"
-            {...register("appointment_time", { required: "Time is required" })}
-            />
-            {errors.appointment_time && <p className="text-red-500">{errors.appointment_time.message}</p>}
-        </div>
+                <div>
+                    <label>Time
+                        <input
+                            type="time"
+                            className="p-2 m-2"
+                            {...register("appointment_time", { required: "Time is required" })}
+                        />
+                    </label>
+                    {errors.appointment_time && <p className="text-red-500">{errors.appointment_time.message}</p>}
+                </div>
+            </div>
+            
+            <div>
+                <label className="flex">Notes
+                    <textarea
+                        className="border p-2 m-2 w-full h-50"
+                        rows={3}
+                        {...register("notes")}
+                    />
+                </label>
+            </div>
 
-        <div>
-            <label className="flex flex-col">Notes</label>
-            <textarea
-            className="border p-2"
-            rows={3}
-            {...register("notes")}
-            />
-        </div>
+            <button 
+                type="submit" 
+                className="bg-indigo-800 text-white p-2 rounded hover:bg-indigo-900"
+            >
+                Add Appointment
+            </button>
 
-        <button type="submit" className="bg-purple-500 text-white p-2">
-            Add Appointment
-        </button>
-        <Link className="border text-center rounded p-2 border-gray-400" to="/appointments">Close</Link>
-        <div className="text-red-500">{error}</div>
+            <Link 
+                className="border text-center rounded p-2 border-gray-400" 
+                to="/appointments"
+            >
+                Close
+            </Link>
+
+            <div className="text-red-500">{error}</div>
         </form>
-    )
+    );
 }
 
 export default AddAppointment;

@@ -36,60 +36,65 @@ function Signup() {
 
     return(
         <>
-            <div className="text-red-800">{error}</div>
-            <form onSubmit={handleSubmit(onSubmit)} className="border">
-                <h3>Sign up</h3>
+            <div className="min-h-screen flex flex-col justify-center text-center items-center">
+                <div className="text-red-800">{error}</div>
+                <form onSubmit={handleSubmit(onSubmit)} className="border text-xl p-2">
+                    <h3 className="m-2 text-2xl font-bold">Sign up</h3>
 
-                <div>
-                    <label>Name</label>
-                    <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    {...register("name")}
-                    required
-                    />
-                    {errors.name && (
-                        <p className="text-red-500 text-sm">{errors.name.message}</p>
-                    )}
-                </div>
+                    <div className="p-2">
+                        <label>Name:</label>
+                        <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        className="p-2 m-2"
+                        {...register("name")}
+                        required
+                        />
+                        {errors.name && (
+                            <p className="text-red-500 text-sm">{errors.name.message}</p>
+                        )}
+                    </div>
 
-                <div>
-                    <label>Email</label>
-                    <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    {...register("email")}
-                    placeholder="name@example.com"
-                    required
-                    />
-                    {errors.email && (
-                        <p className="text-red-500 text-sm">{errors.username.message}</p>
-                    )}
-                </div>
+                    <div className="p-2">
+                        <label>Email:</label>
+                        <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        className="p-2 m-2"
+                        {...register("email")}
+                        placeholder="name@example.com"
+                        required
+                        />
+                        {errors.email && (
+                            <p className="text-red-500 text-sm">{errors.username.message}</p>
+                        )}
+                    </div>
 
-                <div>
-                    <label>Password</label>
-                    <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    {...register("password")}
-                    required
-                    />
-                    {errors.password && (
-                        <p className="text-red-500 text-sm">{errors.password.message}</p>
-                    )}
-                </div>
+                    <div className="p-2">
+                        <label>Password:</label>
+                        <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        className="p-2 m-2"
+                        {...register("password")}
+                        required
+                        />
+                        {errors.password && (
+                            <p className="text-red-500 text-sm">{errors.password.message}</p>
+                        )}
+                    </div>
 
-                <button type="submit">Create account</button>
-                <div>
-                    <p>
-                        I already have my account. <Link to="/login" className="text-purple-500 hover:text-purple-900">Log in</Link>
-                    </p>
-                </div>
-            </form>
+                    <button className="p-3" type="submit">Create account</button>
+                    <div className="p-2">
+                        <p>
+                            I already have my account. <Link to="/login" className="text-indigo-800 hover:text-indigo-900">Log in</Link>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </>
     )
 }

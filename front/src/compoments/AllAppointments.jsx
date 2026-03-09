@@ -83,11 +83,11 @@ function AllAppointments() {
 
     return(
         <div>
-            <div>{user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
+            <div>{user.role === "user" && <Link className="block w-[80%] my-2 mx-auto text-center bg-indigo-800 hover:bg-indigo-900 text-white py-2 rounded text-2xl" to="/appointments/add"> + Add Appointment</Link>}
                 <Outlet />
             </div>
            
-            <div>
+            <div className="flex justify-center text-xl m-2">
                 <SearchInput 
                 value={search} 
                 onChange={setSearch}

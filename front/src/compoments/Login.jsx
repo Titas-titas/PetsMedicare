@@ -25,45 +25,49 @@ function Login() {
     }
     return(
         <>
-            <div className="text-red-800">{error}</div>
-            <form onSubmit={handleSubmit(onSubmit)} className="border">
-                <h3>Login</h3>
-                <div>
-                    <label>Email</label>
-                    <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    {...register("email")}
-                    placeholder="name@example.com"
-                    required
-                    />
-                    {errors.email && (
-                        <p className="text-red-500 text-sm">{errors.email.message}</p>
-                    )}
-                </div>
+            <div className="min-h-screen flex flex-col justify-center text-center items-center">
+                <div className="text-red-800">{error}</div>
+                <form onSubmit={handleSubmit(onSubmit)} className="border text-xl p-2">
+                    <h3 className="m-2 text-2xl font-bold">Login</h3>
+                    <div className="p-2">
+                        <label>Email: </label>
+                        <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        className="m-2 p-2"
+                        {...register("email")}
+                        placeholder="name@example.com"
+                        required
+                        />
+                        {errors.email && (
+                            <p className="text-red-500 text-sm">{errors.email.message}</p>
+                        )}
+                    </div>
 
-                <div>
-                    <label>Password</label>
-                    <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    {...register("password")}
-                    required
-                    />
-                    {errors.password && (
-                        <p className="text-red-500 text-sm">{errors.password.message}</p>
-                    )}
-                </div>
+                    <div className="p-2">
+                        <label>Password:</label>
+                        <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        className="m-2 p-2"
+                        {...register("password")}
+                        required
+                        />
+                        {errors.password && (
+                            <p className="text-red-500 text-sm">{errors.password.message}</p>
+                        )}
+                    </div>
 
-                <button type="submit">Login</button>
-                <div>
-                    <p>
-                        I dont have account <Link to="/signup" className="text-purple-500 hover:text-purple-900">Sign up</Link>
-                    </p>
-                </div>
-            </form>
+                    <button className="p-3" type="submit">Login</button>
+                    <div className="p-2">
+                        <p>
+                            I dont have account <Link to="/signup" className="text-indigo-800 hover:text-indigo-900">Sign up</Link>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </>
     )
 }

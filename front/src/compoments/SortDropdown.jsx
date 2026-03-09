@@ -12,7 +12,7 @@ export function SortDropdown({ sort, order, onChange }) {
         <div className="relative inline-block">
             <button
                 onClick={() => setOpen(!open)}
-                className="px-3 py-2 text-white bg-purple-500 rounded"
+                className="px-3 py-2 text-white bg-indigo-800 rounded hover:bg-indigo-900"
             >
                 Sort by
                 {!open && (<img src={iconUp} alt="up" className="inline"/>)}
@@ -20,9 +20,9 @@ export function SortDropdown({ sort, order, onChange }) {
             </button>
 
             {open && (
-                <div className="absolute mt-2 bg-white shadow-lg border rounded p-3 w-48">
+                <div className="absolute mt-2 bg-white shadow-lg border rounded py-3 w-48">
                 <div className="flex flex-col gap-1">
-                    <label className={`${sort === "pet_name" ? "bg-gray-300" : ""}`}>
+                    <label className={`px-3 py-1 ${sort === "pet_name" ? "bg-gray-300" : ""}`}>
                     <input
                         type="radio"
                         name="sort"
@@ -34,7 +34,7 @@ export function SortDropdown({ sort, order, onChange }) {
                     Pet Name
                     </label>
 
-                    <label className={`${sort === "appointment_date" ? "bg-gray-300" : ""}`}>
+                    <label className={`px-3 py-1 ${sort === "appointment_date" ? "bg-gray-300" : ""}`}>
                     <input
                         type="radio"
                         name="sort"
@@ -46,7 +46,7 @@ export function SortDropdown({ sort, order, onChange }) {
                     Date
                     </label>
 
-                    <label className={`${sort === "owner_name" ? "bg-gray-300" : ""}`}>
+                    <label className={`px-3 py-1 ${sort === "owner_name" ? "bg-gray-300" : ""}`}>
                     <input
                         type="radio"
                         name="sort"
@@ -62,7 +62,7 @@ export function SortDropdown({ sort, order, onChange }) {
                 <hr className="my-2" />
 
                 <div className="flex flex-col gap-1">
-                    <label className={`${order === "ASC" ? "bg-gray-300" : ""}`}>
+                    <label className={`px-3 py-1 ${order === "ASC" ? "bg-gray-300" : ""}`}>
                     <input
                         type="radio"
                         name="order"
@@ -74,7 +74,7 @@ export function SortDropdown({ sort, order, onChange }) {
                     Asc
                     </label>
 
-                    <label className={`${order === "DESC" ? "bg-gray-300" : ""}`}>
+                    <label className={`px-3 py-1 ${order === "DESC" ? "bg-gray-300" : ""}`}>
                     <input
                         type="radio"
                         name="order"

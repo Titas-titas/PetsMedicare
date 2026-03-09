@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
 input, button{
-    @apply border rounded p-1;
+    @apply border rounded;
+}
+textarea{
+    overflow-y: scroll;
+    resize: none;
 }

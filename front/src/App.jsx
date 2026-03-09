@@ -1,29 +1,19 @@
 import AddAppointment from "./compoments/AddAppointments.jsx";
 import AllAppointments from "./compoments/AllAppointments.jsx";
 import EditAppointment from "./compoments/EditAppoitment.jsx";
+import Header from "./compoments/Header.jsx";
 import Home from "./compoments/Home.jsx";
 import Login from "./compoments/Login.jsx";
-import LogoutBtn from "./compoments/LogoutBtn.jsx";
 import ProtectedRoute from "./compoments/ProtectedRoute.jsx";
 import Signup from "./compoments/Signup.jsx";
-import { Routes, Route, Link } from "react-router";
-import { UserContext } from "./contexts/UserContext.jsx";
-import { useContext } from "react";
+import { Routes, Route } from "react-router";
 
 function App() {
-    const { user } = useContext(UserContext);
     
     return(
         <>
-            <div className="text-white bg-purple-500 text-center p-3">
-                <h1 className="text-2xl">Pet Medicare</h1>
-                <div className="flex gap-3 justify-center">
-                    {user && <><LogoutBtn/> <Link to="/appointments" className="p-1">Appointments</Link></>}
-                    {!user && <>
-                        <Link to="/login" className="p-1">Login</Link>
-                        <Link to="/signup" className="p-1">Sign Up</Link>
-                    </>}
-                </div>
+            <div className="text-white bg-indigo-800 text-center p-3">
+                <Header/>
             </div>
             <div>
                 <Routes>
