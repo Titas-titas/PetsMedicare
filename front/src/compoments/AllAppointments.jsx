@@ -16,12 +16,13 @@ function AllAppointments() {
     const { user } = useContext(UserContext);
     const [sort, setSort] = useState("pet_name");
     const [order, setOrder] = useState("ASC");
+    const [search, setSearch] = useState("");
 
 
     const getAppointments = async () => {
         try {
             const endpoint = user.role === "admin" ? `appointments` : `appointments/me`
-            const response = await axios.get(`${API_URL}/${endpoint}?sort=${sort}&order=${order}`, {withCredentials: true});
+            const response = await axios.get(`${API_URL}/${endpoint}?sort=${sort}&order=${order}&search=${search}`, {withCredentials: true});
             const {data} = response.data;
             await setAppointments(data)
         } catch (error) {
@@ -49,6 +50,7 @@ function AllAppointments() {
             await getAppointments();
         } catch (error) {
             setError(handleErrors(error));
+            setAppointments([]);
         }
     };
 
@@ -76,21 +78,26 @@ function AllAppointments() {
             await getAppointments();
         };
         getData();
-    }, [sort, order]);
+    }, [sort, order, search]);
 
 
     return(
         <div>
             {user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
             <div>
-                <SearchInput/>
+                <SearchInput 
+                value={search} 
+                onChange={setSearch}
+                />
                 <SortDropdown
                 sort={sort}
                 order={order}
                 onChange={sortChange}
                 />
             </div>
-            <div>{error}</div>
+            {appointments.length === 0 && !error && (
+                <div>No appointments found</div>
+            )}
             {appointments.map((appointment) => (
                 <Appointment 
                 key={appointment.id}

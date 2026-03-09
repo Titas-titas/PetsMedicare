@@ -8,9 +8,9 @@ export const getAllAppointments = async (req, res, next) => {
 
         const appointmentsList = await allAppointments({ sort, order, search });
         
-        if(appointmentsList.length === 0){
-            throw new AppError("No appointments were found", 404);
-        }
+        // if(appointmentsList.length === 0){
+        //     throw new AppError("No appointments were found", 404);
+        // }
 
         res.status(200).json({
             status: "success",
@@ -124,9 +124,9 @@ export const getMyAppointments = async (req, res, next) => {
 
     const appointments = await appointmentsByUser(req.user.id, { sort, order, search });
 
-    if(appointments.length === 0){
-        throw new AppError("No appointments were found", 404);
-    }
+    // if(appointments.length === 0){
+    //     throw new AppError("No appointments were found", 404);
+    // }
 
     res.status(200).json({
       status: "success",

@@ -1,8 +1,8 @@
 
-function SearchInput() {
+function SearchInput({value, onChange}) {
     return(
         <div className="inline">
-            <input type="text" placeholder="Search" className="border  border-gray-500"/>
+            <input type="text" placeholder="Search" className="border  border-gray-500" value={value} onChange={(e) => onChange(e.target.value)}/>
         </div>
     )
 }
