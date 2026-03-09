@@ -37,10 +37,9 @@ function Signup() {
     return(
         <>
             <div className="min-h-screen flex flex-col justify-center text-center items-center">
-                <div className="text-red-800">{error}</div>
+                
                 <form onSubmit={handleSubmit(onSubmit)} className="border text-xl p-2">
                     <h3 className="m-2 text-2xl font-bold">Sign up</h3>
-
                     <div className="p-2">
                         <label>Name:</label>
                         <input
@@ -93,6 +92,7 @@ function Signup() {
                             I already have my account. <Link to="/login" className="text-indigo-800 hover:text-indigo-900">Log in</Link>
                         </p>
                     </div>
+                    <div className="text-red-800">{error}</div>
                 </form>
             </div>
         </>

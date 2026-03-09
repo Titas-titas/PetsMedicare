@@ -26,7 +26,6 @@ function Login() {
     return(
         <>
             <div className="min-h-screen flex flex-col justify-center text-center items-center">
-                <div className="text-red-800">{error}</div>
                 <form onSubmit={handleSubmit(onSubmit)} className="border text-xl p-2">
                     <h3 className="m-2 text-2xl font-bold">Login</h3>
                     <div className="p-2">
@@ -65,7 +64,8 @@ function Login() {
                         <p>
                             I dont have account <Link to="/signup" className="text-indigo-800 hover:text-indigo-900">Sign up</Link>
                         </p>
-                    </div>
+                    </div>                
+                    <div className="text-red-800">{error}</div>
                 </form>
             </div>
         </>
