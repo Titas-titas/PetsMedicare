@@ -13,11 +13,14 @@ function AllAppointments() {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState("");
     const { user } = useContext(UserContext);
+    const [sort, setSort] = useState("pet_name");
+    const [order, setOrder] = useState("ASC");
+
 
     const getAppointments = async () => {
         try {
             const endpoint = user.role === "admin" ? `appointments` : `appointments/me`
-            const response = await axios.get(`${API_URL}/${endpoint}`, {withCredentials: true});
+            const response = await axios.get(`${API_URL}/${endpoint}?sort=${sort}&order=${order}`, {withCredentials: true});
             const {data} = response.data;
             await setAppointments(data)
         } catch (error) {
@@ -61,20 +64,29 @@ function AllAppointments() {
         }
     };
 
+    const sortChange = ({ sort, order }) =>{
+        setSort(sort);
+        setOrder(order);
+    }
+
 
     useEffect(() => {
         const getData = async () =>{
             await getAppointments();
         };
         getData();
-    }, []);
+    }, [sort, order]);
 
 
     return(
         <div>
             {user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
             <div>
-                <SortDropdown/>
+                <SortDropdown
+                sort={sort}
+                order={order}
+                onChange={sortChange}
+                />
             </div>
             <div>{error}</div>
             {appointments.map((appointment) => (
