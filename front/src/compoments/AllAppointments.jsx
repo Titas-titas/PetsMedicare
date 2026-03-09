@@ -100,7 +100,7 @@ function AllAppointments() {
             </div>
 
             {appointments.length === 0 && !error && (
-                <div>No appointments found</div>
+                <div className="text-center mt-5 text-xl">No appointments found</div>
             )}
 
             {appointments.map((appointment) => (
