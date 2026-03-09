@@ -5,7 +5,14 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/api/v1/appointments/me
+  url: http://localhost:3000/api/v1/appointments/me?sort=owner_name&order=DESC
+  params:
+    - name: sort
+      value: owner_name
+      type: query
+    - name: order
+      value: DESC
+      type: query
   auth: inherit
 
 settings:

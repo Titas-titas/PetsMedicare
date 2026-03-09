@@ -8,14 +8,15 @@ http:
   url: http://localhost:3000/api/v1/appointments
   body:
     type: json
-    data: |
+    data: |+
       {
-        "pet_name": "Bella",
-        "owner_name": "Jonas Petraitis",
-        "appointment_date": "2026-03-10",
-        "appointment_time": "14:30",
-        "notes": "Annual check-up and vaccinations"
+        "pet_name": "Diana",
+        "owner_name": "M Light",
+        "appointment_date": "2026-03-11",
+        "appointment_time": "20:00",
+        "notes": "My Dog need for the emargency"
       }
+
   auth: inherit
 
 settings:

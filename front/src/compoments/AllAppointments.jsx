@@ -4,6 +4,7 @@ import { handleErrors } from "../utils/errorhandling.js";
 import { UserContext } from "../contexts/UserContext.jsx";
 import Appointment from "./Appointment.jsx";
 import { Link } from "react-router";
+import SortDropdown from "./SortDropdown.jsx";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -72,6 +73,9 @@ function AllAppointments() {
     return(
         <div>
             {user.role === "user" && <Link className="text-white bg-purple-500 " to="/appointments/add">Add Appointment</Link>}
+            <div>
+                <SortDropdown/>
+            </div>
             <div>{error}</div>
             {appointments.map((appointment) => (
                 <Appointment 
