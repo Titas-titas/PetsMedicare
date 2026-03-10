@@ -19,9 +19,9 @@ export const allAppointments = async ({ sort, order, search }) => {
 
   if(search) {
     whereAppointments = sql`
-      where pet_name like ${'%' + search + '%'}
-      or owner_name like ${'%' + search + '%'}
-      or notes like ${'%' + search + '%'}
+      where pet_name ilike ${'%' + search + '%'}
+      or owner_name ilike ${'%' + search + '%'}
+      or notes ilike ${'%' + search + '%'}
     `;
   }
 
